@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Animal, AnimalDetail, ChatMessage } from '../types';
 import { getSpeciesDetails } from '../services/biodiversityService';
-import { generateAnimalSummary, chatWithNaturalist, generateFunFact } from '../services/geminiService';
+import { generateAnimalSummary, chatWithNaturalist, generateFunFact } from '../services/ai/aiService';
 
 interface AnimalModalProps {
   animal: Animal | null;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FilterBar from './components/FilterBar';
 import AnimalCard from './components/AnimalCard';
 import AnimalModal from './components/AnimalModal';
+import AdUnit from './components/AdUnit';
 import { Animal, FilterType } from './types';
 import { PRE_CACHED_ANIMALS } from './constants';
 import { searchSpecies, fetchPreviewForList } from './services/biodiversityService';
@@ -69,13 +70,18 @@ function App() {
 
   return (
     <div className="min-h-screen bg-stone-900 flex justify-center py-4 sm:py-8 px-2 sm:px-4 overflow-x-hidden">
+      {/* Left Sidebar Ad */}
+      <div className="hidden xl:block w-[160px] shrink-0 sticky top-8 self-start">
+        <AdUnit adSlot="8595191069" />
+      </div>
+
       {/* Scale Wrapper */}
-      <div 
-        style={{ 
-            transform: `scale(${scale})`, 
+      <div
+        style={{
+            transform: `scale(${scale})`,
             transformOrigin: 'top center',
             // Add margin bottom to compensate for the vertical space growth when scaling
-            marginBottom: `${(scale - 1) * 800}px` 
+            marginBottom: `${(scale - 1) * 800}px`
         }}
         className="transition-all duration-300 ease-out w-full flex justify-center"
       >
@@ -189,6 +195,11 @@ function App() {
             {/* Bottom Hinge Visual */}
             <div className="h-6 bg-dex-darkRed border-t border-red-900 shrink-0"></div>
         </div>
+      </div>
+
+      {/* Right Sidebar Ad */}
+      <div className="hidden xl:block w-[160px] shrink-0 sticky top-8 self-start">
+        <AdUnit adSlot="8595191069" />
       </div>
 
       <AnimalModal 

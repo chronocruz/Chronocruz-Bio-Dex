@@ -12,7 +12,7 @@ A Pokedex-inspired biodiversity dashboard for exploring the animal kingdom, powe
 
 ## About
 
-Chronocruz Bio-Dex is a web app that lets you browse, search, and learn about animals from around the world. It pulls real-time data from biodiversity APIs and uses Google Gemini AI to generate summaries, fun facts, and an interactive naturalist chat for each species.
+Chronocruz Bio-Dex is a web app that lets you browse, search, and learn about animals from around the world. It pulls real-time data from biodiversity APIs and uses AI to generate summaries, fun facts, and an interactive naturalist chat for each species. Supports multiple AI providers (Gemini, OpenAI) with automatic fallback.
 
 The UI is styled after the classic Pokedex device -- complete with CRT scanlines, indicator lights, and a retro-tech aesthetic.
 
@@ -22,8 +22,9 @@ The UI is styled after the classic Pokedex device -- complete with CRT scanlines
 - **Live Search** -- Search any species by common or scientific name
 - **Taxonomy Filters** -- Filter by 16+ categories: Mammals, Birds, Reptiles, Amphibians, Fish, Sharks & Rays, Insects, Arachnids, Crustaceans, Mollusks, Cnidarians, Primates, Carnivores, Cetaceans, Rodents, Beetles, Butterflies, Bees & Ants
 - **Species Detail Modal** -- View taxonomy, conservation status, image gallery, and habitat info
-- **AI-Powered Insights** -- Gemini AI generates species summaries and fun facts
-- **Naturalist Chat** -- Ask Gemini questions about any animal in a conversational interface
+- **AI-Powered Insights** -- AI generates species summaries and fun facts (Gemini / OpenAI with auto-fallback)
+- **Naturalist Chat** -- Ask AI questions about any animal in a conversational interface
+- **Offline Mode** -- Basic content available even without any API keys
 - **Responsive Design** -- Works on desktop and mobile with adjustable UI scale (1x / 1.25x / 1.5x)
 
 ## Data Sources
@@ -32,14 +33,17 @@ The UI is styled after the classic Pokedex device -- complete with CRT scanlines
 |--------|-------|
 | [iNaturalist API](https://api.inaturalist.org) | Species search, photos, taxonomy, observations |
 | [GBIF API](https://www.gbif.org/developer/summary) | Taxonomic backbone, species occurrence data |
-| [Google Gemini AI](https://ai.google.dev) | AI summaries, fun facts, naturalist chat |
+| [Google Gemini AI](https://ai.google.dev) | AI summaries, fun facts, naturalist chat (primary) |
+| [OpenAI API](https://platform.openai.com) | AI summaries, fun facts, naturalist chat (fallback) |
 
 ## Getting Started
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org) (v18 or later recommended)
-- A [Google Gemini API key](https://aistudio.google.com/apikey) (free tier available)
+- At least one AI API key (or the app runs in offline mode):
+  - [Google Gemini API key](https://aistudio.google.com/apikey) (free tier available) -- primary
+  - [OpenAI API key](https://platform.openai.com/api-keys) -- fallback
 
 ### Installation
 
@@ -54,10 +58,12 @@ The UI is styled after the classic Pokedex device -- complete with CRT scanlines
    npm install
    ```
 
-3. Create a `.env.local` file in the project root and add your Gemini API key:
+3. Create a `.env.local` file in the project root and add your API key(s):
    ```
-   GEMINI_API_KEY=your_api_key_here
+   GEMINI_API_KEY=your_gemini_key_here
+   OPENAI_API_KEY=your_openai_key_here
    ```
+   At least one key is needed for AI features. The app cascades: Gemini → OpenAI → offline mode.
 
 4. Start the development server:
    ```bash
@@ -79,7 +85,7 @@ npm run preview
 - **TypeScript** -- Type safety across the codebase
 - **Vite** -- Fast dev server and optimized production builds
 - **Tailwind CSS** -- Utility-first styling with a custom Pokedex theme
-- **Google Generative AI SDK** -- Gemini integration for AI features
+- **Multi-provider AI** -- Gemini (primary), OpenAI (fallback), offline mode
 
 ## Project Structure
 
@@ -96,7 +102,13 @@ Chronocruz-Bio-Dex/
 │   └── AnimalModal.tsx      # Detail modal with AI chat
 ├── services/
 │   ├── biodiversityService.ts  # iNaturalist & GBIF API integration
-│   └── geminiService.ts        # Gemini AI service (summaries, chat)
+│   └── ai/
+│       ├── aiService.ts        # AI orchestrator with provider fallback
+│       ├── types.ts            # AIProvider interface
+│       └── providers/
+│           ├── geminiProvider.ts   # Google Gemini provider
+│           ├── openaiProvider.ts   # OpenAI (ChatGPT) provider
+│           └── offlineProvider.ts  # Static offline fallback
 ├── vite.config.ts           # Vite build configuration
 ├── tsconfig.json            # TypeScript compiler options
 └── package.json             # Dependencies and scripts
