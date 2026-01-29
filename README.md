@@ -1,5 +1,5 @@
 # Chronocruz Bio-Dex
-##This application was completely coded with the help of Google Gemini and Anthropic Claude Code.
+## This application was completely coded with the help of Google Gemini and Anthropic Claude Code.
 
 A Pokedex-inspired biodiversity dashboard for exploring the animal kingdom, powered by live data and AI.
 
