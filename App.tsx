@@ -101,7 +101,7 @@ function App() {
                 </div>
 
                 <div className="ml-auto mt-2 flex flex-col items-end">
-                    <h1 className="font-tech text-3xl text-white font-bold tracking-widest drop-shadow-md">BIODEX v2.0</h1>
+                    <h1 className="font-tech text-3xl text-white font-bold tracking-widest drop-shadow-md">CHRONOCRUZ BIO-DEX</h1>
                     <button 
                         onClick={toggleScale}
                         className="mt-1 px-2 py-0.5 bg-stone-800 border border-stone-600 rounded text-[10px] text-dex-cyan font-tech hover:bg-stone-700 hover:text-white transition-colors cursor-pointer shadow-dex-btn active:shadow-dex-btn-active active:translate-y-[2px]"
