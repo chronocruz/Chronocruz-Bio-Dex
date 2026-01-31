@@ -72,29 +72,29 @@ const AnimalModal: React.FC<AnimalModalProps> = ({ animal, onClose }) => {
   if (!animal) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4">
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onClick={onClose} />
-      
+
       {/* Device Body */}
-      <div className="relative flex h-full max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-xl border-4 border-dex-darkRed bg-dex-red shadow-2xl md:flex-row">
-        
-        {/* Close Button Mobile */}
-        <button onClick={onClose} className="absolute top-2 right-2 z-20 rounded bg-stone-900 border border-stone-500 p-2 text-red-500 font-pixel hover:bg-stone-800 md:hidden">
+      <div className="relative flex h-[100dvh] sm:h-full sm:max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden sm:rounded-xl border-0 sm:border-4 border-dex-darkRed bg-dex-red shadow-2xl md:flex-row">
+
+        {/* Close Button Mobile - Floating */}
+        <button onClick={onClose} className="absolute top-2 right-2 z-30 rounded bg-stone-900/80 border border-stone-500 p-2 text-red-500 font-pixel hover:bg-stone-800 md:hidden text-xs">
           CLOSE [X]
         </button>
 
         {/* Left Panel: Image Visualizer */}
-        <div className="relative h-64 w-full bg-dex-screen p-4 md:h-full md:w-5/12 border-b-4 md:border-b-0 md:border-r-4 border-dex-darkRed flex flex-col">
-            <div className="mb-2 flex justify-between items-center text-dex-cyan font-tech text-xs">
+        <div className="relative h-48 min-h-[12rem] md:h-full w-full bg-dex-screen p-2 md:p-4 md:w-5/12 border-b-4 md:border-b-0 md:border-r-4 border-dex-darkRed flex flex-col shrink-0">
+            <div className="mb-2 flex justify-between items-center text-dex-cyan font-tech text-[10px] sm:text-xs">
                  <span>VISUAL_FEED_01</span>
                  <span className="animate-pulse">RECORDING...</span>
             </div>
-            
+
             <div className="flex-1 rounded border-2 border-stone-600 bg-black overflow-hidden relative group">
                 {details?.imageUrl || animal.imageUrl ? (
-                    <img 
-                        src={details?.imageUrl || animal.imageUrl} 
+                    <img
+                        src={details?.imageUrl || animal.imageUrl}
                         alt={animal.commonName}
                         className="h-full w-full object-contain"
                     />
@@ -103,29 +103,29 @@ const AnimalModal: React.FC<AnimalModalProps> = ({ animal, onClose }) => {
                 )}
                 {/* Grid Overlay */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] pointer-events-none"></div>
-                
+
                 {/* Targeting Reticle */}
-                <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-dex-cyan opacity-50"></div>
-                <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-dex-cyan opacity-50"></div>
+                <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-dex-cyan opacity-50"></div>
+                <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-dex-cyan opacity-50"></div>
             </div>
 
-            <div className="mt-4 bg-stone-800 p-2 rounded border border-stone-600">
-                <h2 className="text-2xl font-pixel text-white uppercase text-center tracking-widest">{animal.commonName}</h2>
-                <p className="font-tech text-xs text-center text-dex-cyan uppercase">{details?.scientificName || animal.scientificName}</p>
+            <div className="mt-2 md:mt-4 bg-stone-800 p-1 md:p-2 rounded border border-stone-600">
+                <h2 className="text-xl md:text-2xl font-pixel text-white uppercase text-center tracking-widest truncate">{animal.commonName}</h2>
+                <p className="font-tech text-[10px] md:text-xs text-center text-dex-cyan uppercase truncate">{details?.scientificName || animal.scientificName}</p>
             </div>
         </div>
 
         {/* Right Panel: Data Readout */}
         <div className="flex flex-1 flex-col overflow-hidden bg-stone-200">
-          <div className="flex-1 overflow-y-auto p-4 md:p-6 bg-stone-800 text-stone-300 font-tech">
-             
+          <div className="flex-1 overflow-y-auto p-3 md:p-6 bg-stone-800 text-stone-300 font-tech">
+
              {/* Header Controls */}
-             <div className="flex justify-between items-start mb-6">
+             <div className="flex justify-between items-start mb-4 md:mb-6">
                  <div className="flex gap-2">
-                    <span className="px-2 py-1 bg-dex-blue text-white text-xs border border-blue-400 rounded-sm">
+                    <span className="px-2 py-1 bg-dex-blue text-white text-[10px] md:text-xs border border-blue-400 rounded-sm">
                         {details?.taxonomy.class || 'ANIMALIA'}
                     </span>
-                    <span className="px-2 py-1 bg-stone-600 text-white text-xs border border-stone-500 rounded-sm">
+                    <span className="px-2 py-1 bg-stone-600 text-white text-[10px] md:text-xs border border-stone-500 rounded-sm">
                         {details?.taxonomy.order || 'UNKNOWN'}
                     </span>
                  </div>
@@ -135,51 +135,51 @@ const AnimalModal: React.FC<AnimalModalProps> = ({ animal, onClose }) => {
             </div>
 
             {loading ? (
-              <div className="space-y-4 font-pixel text-green-500 animate-pulse">
+              <div className="space-y-4 font-pixel text-green-500 animate-pulse text-sm">
                 <p>{'>'} DOWNLOADING BIOMETRICS...</p>
                 <p>{'>'} ANALYZING DNA SEQUENCE...</p>
                 <p>{'>'} ACCESSING GLOBAL DATABASE...</p>
               </div>
             ) : (
-              <div className="space-y-6">
-                
+              <div className="space-y-4 md:space-y-6">
+
                 {/* AI Analysis Box */}
-                <div className="bg-stone-900 border border-stone-600 p-4 rounded relative overflow-hidden">
+                <div className="bg-stone-900 border border-stone-600 p-3 md:p-4 rounded relative overflow-hidden">
                    <div className="absolute top-0 left-0 w-full h-1 bg-dex-cyan opacity-50"></div>
                    <div className="flex items-center gap-2 mb-2 text-dex-cyan border-b border-stone-700 pb-2">
-                       <span className="font-pixel text-lg">AI_ANALYSIS_MODULE</span>
+                       <span className="font-pixel text-base md:text-lg">AI_ANALYSIS_MODULE</span>
                    </div>
-                   <p className="text-stone-300 text-sm leading-relaxed font-mono">
+                   <p className="text-stone-300 text-xs md:text-sm leading-relaxed font-mono">
                       {aiSummary}
                    </p>
                 </div>
 
                 {/* Data Grid */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 md:gap-4">
                      <div className="bg-stone-900 border border-stone-600 p-2 rounded">
                         <p className="text-[10px] text-stone-500 uppercase">Conservation Status</p>
-                        <p className="text-dex-yellow font-bold uppercase">{details?.conservationStatus || 'N/A'}</p>
+                        <p className="text-dex-yellow font-bold uppercase text-xs md:text-sm">{details?.conservationStatus || 'N/A'}</p>
                      </div>
                      <div className="bg-stone-900 border border-stone-600 p-2 rounded">
                         <p className="text-[10px] text-stone-500 uppercase">Family</p>
-                        <p className="text-white font-bold uppercase">{details?.taxonomy.family || animal.family || 'N/A'}</p>
+                        <p className="text-white font-bold uppercase text-xs md:text-sm">{details?.taxonomy.family || animal.family || 'N/A'}</p>
                      </div>
                 </div>
 
                 {/* Fun Fact Warning */}
                  {funFact && (
-                    <div className="border border-dex-yellow bg-yellow-900/20 p-3 rounded">
-                        <p className="text-xs font-bold text-dex-yellow uppercase mb-1 flex items-center">
+                    <div className="border border-dex-yellow bg-yellow-900/20 p-2 md:p-3 rounded">
+                        <p className="text-[10px] md:text-xs font-bold text-dex-yellow uppercase mb-1 flex items-center">
                             <span className="animate-pulse mr-2">⚠</span> INTERESTING FACT
                         </p>
-                        <p className="text-stone-200 text-sm italic">"{funFact}"</p>
+                        <p className="text-stone-200 text-xs md:text-sm italic">"{funFact}"</p>
                     </div>
                 )}
 
                 {/* Description */}
                 <div>
-                   <h3 className="font-pixel text-lg text-white mb-1 bg-stone-700 px-2">ENTRY DESCRIPTION</h3>
-                   <div className="bg-stone-900 p-3 border-l-4 border-stone-500 text-sm text-stone-400">
+                   <h3 className="font-pixel text-base md:text-lg text-white mb-1 bg-stone-700 px-2">ENTRY DESCRIPTION</h3>
+                   <div className="bg-stone-900 p-2 md:p-3 border-l-4 border-stone-500 text-xs md:text-sm text-stone-400">
                      {details?.description ? details.description.replace(/<[^>]*>?/gm, '').slice(0, 300) + '...' : 'DATA NOT FOUND IN ARCHIVES.'}
                    </div>
                 </div>
@@ -189,34 +189,33 @@ const AnimalModal: React.FC<AnimalModalProps> = ({ animal, onClose }) => {
           </div>
 
           {/* Chat Terminal */}
-          <div className="h-1/3 min-h-[200px] border-t-4 border-dex-darkRed bg-black p-4 flex flex-col font-tech">
-             <div className="text-xs text-green-600 mb-2 flex justify-between">
+          <div className="h-48 md:h-1/3 min-h-[12rem] md:min-h-[200px] border-t-4 border-dex-darkRed bg-black p-3 md:p-4 flex flex-col font-tech shrink-0">
+             <div className="text-[10px] sm:text-xs text-green-600 mb-2 flex justify-between">
                 <span>TERMINAL_LINK_ESTABLISHED</span>
                 <span>BAUD: 9600</span>
              </div>
-             
+
              <div className="flex-1 overflow-y-auto mb-2 space-y-1 pr-2 no-scrollbar">
                 {chatHistory.map((msg) => (
-                    <div key={msg.id} className={`text-sm break-words ${msg.role === 'user' ? 'text-dex-cyan text-right' : 'text-green-500'}`}>
-                        <span className="opacity-50 text-[10px] mr-2">[{msg.role === 'user' ? 'USR' : 'SYS'}]</span>
+                    <div key={msg.id} className={`text-xs sm:text-sm break-words ${msg.role === 'user' ? 'text-dex-cyan text-right' : 'text-green-500'}`}>
+                        <span className="opacity-50 text-[8px] sm:text-[10px] mr-2">[{msg.role === 'user' ? 'USR' : 'SYS'}]</span>
                         {msg.text}
                     </div>
                 ))}
                 {isChatting && (
-                    <div className="text-green-500 text-sm animate-pulse">{'>'} PROCESSING REQUEST...</div>
+                    <div className="text-green-500 text-xs sm:text-sm animate-pulse">{'>'} PROCESSING REQUEST...</div>
                 )}
                 <div ref={chatEndRef} />
              </div>
 
              <form onSubmit={handleSendMessage} className="flex gap-2 border-t border-green-900/50 pt-2">
-                <span className="text-green-500 text-lg">{'>'}</span>
+                <span className="text-green-500 text-base sm:text-lg">{'>'}</span>
                 <input
                     type="text"
                     value={chatInput}
                     onChange={(e) => setChatInput(e.target.value)}
                     placeholder="ENTER QUERY..."
-                    className="flex-1 bg-transparent border-none text-green-500 focus:outline-none uppercase font-tech placeholder-green-900"
-                    autoFocus
+                    className="flex-1 bg-transparent border-none text-green-500 focus:outline-none uppercase font-tech placeholder-green-900 text-xs sm:text-base"
                 />
              </form>
           </div>

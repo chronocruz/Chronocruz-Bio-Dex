@@ -1,0 +1,111 @@
+/* ============================================
+   CSS CUSTOM PROPERTIES (set by JS at runtime)
+   Defaults match the Classic Red theme
+   ============================================ */
+:root {
+  --dex-primary: #DC0A2D;
+  --dex-primary-dark: #89061C;
+  --dex-accent: #28AAFD;
+  --dex-accent-light: #5BC0FF;
+  --dex-screen: #232323;
+  --dex-screen-text: #E8E8E8;
+  --dex-screen-text-secondary: #A8B5C0;
+  --dex-cyan: #3DE8FF;
+  --dex-yellow: #FFCB05;
+  --dex-ui-surface: #DEDEDE;
+
+  /* Font sizing */
+  --dex-font-base: 16px;
+  --dex-font-scale: 1;
+
+  /* Layout density */
+  --dex-grid-gap: 1rem;
+  --dex-card-padding: 1rem;
+  --dex-card-height: 10rem;
+}
+
+/* ============================================
+   GLOBAL ANIMATION DISABLE
+   Applied by SettingsContext on <body>
+   ============================================ */
+body.animations-disabled .scanline {
+  background: none !important;
+}
+body.animations-disabled .crt-flicker {
+  animation: none !important;
+}
+body.animations-disabled .animate-pulse {
+  animation: none !important;
+}
+body.animations-disabled .animate-bounce {
+  animation: none !important;
+}
+
+/* ============================================
+   SCROLLBAR HIDING
+   ============================================ */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================
+   CRT EFFECTS
+   ============================================ */
+.scanline {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.15) 50%,
+    rgba(0,0,0,0.15) 100%
+  );
+  background-size: 100% 4px;
+}
+
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  100% { opacity: 1; }
+}
+
+/* ============================================
+   TEXT VISIBILITY UTILITY CLASSES
+   ============================================ */
+.dex-screen-text {
+  color: var(--dex-screen-text);
+  text-shadow: 0 0 4px rgba(255,255,255,0.1);
+}
+
+.dex-screen-text-secondary {
+  color: var(--dex-screen-text-secondary);
+  text-shadow: 0 0 2px rgba(255,255,255,0.08);
+}
+
+.dex-highlight-text {
+  color: var(--dex-cyan);
+  text-shadow: 0 0 6px rgba(61, 232, 255, 0.4);
+}
+
+.dex-card-name {
+  font-size: calc(1.25rem * var(--dex-font-scale));
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 4px rgba(0,0,0,0.5);
+}
+
+.dex-scientific-name {
+  font-size: calc(0.8rem * var(--dex-font-scale));
+  color: var(--dex-screen-text-secondary);
+  text-shadow: 0 0 3px rgba(255,255,255,0.1);
+  letter-spacing: 0.05em;
+}
+
+.dex-status-text {
+  font-size: calc(0.75rem * var(--dex-font-scale));
+  color: var(--dex-cyan);
+}

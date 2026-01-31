@@ -21,14 +21,14 @@
             },
             colors: {
               dex: {
-                red: '#DC0A2D',
-                darkRed: '#89061C',
-                blue: '#28AAFD',
-                screen: '#232323',
+                red: 'var(--dex-primary)',
+                darkRed: 'var(--dex-primary-dark)',
+                blue: 'var(--dex-accent)',
+                screen: 'var(--dex-screen)',
                 screenGreen: '#51AE5F',
-                ui: '#DEDEDE',
-                yellow: '#FFCB05',
-                cyan: '#22D3EE'
+                ui: 'var(--dex-ui-surface)',
+                yellow: 'var(--dex-yellow)',
+                cyan: 'var(--dex-cyan)'
               }
             },
             boxShadow: {
@@ -40,37 +40,6 @@
         }
       }
     </script>
-    <style>
-      /* Hide scrollbar for chrome/safari/opera */
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      /* Hide scrollbar for IE, Edge and Firefox */
-      .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-      }
-      
-      .scanline {
-        background: linear-gradient(
-          to bottom,
-          rgba(255,255,255,0),
-          rgba(255,255,255,0) 50%,
-          rgba(0,0,0,0.2) 50%,
-          rgba(0,0,0,0.2)
-        );
-        background-size: 100% 4px;
-      }
-      
-      .crt-flicker {
-        animation: flicker 0.15s infinite;
-      }
-      
-      @keyframes flicker {
-        0% { opacity: 0.97; }
-        100% { opacity: 1; }
-      }
-    </style>
   <script type="importmap">
 {
   "imports": {

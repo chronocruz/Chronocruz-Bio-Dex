@@ -57,15 +57,15 @@ const FilterBar: React.FC<FilterBarProps> = ({
   const displayedFilters = showAllFilters ? allFilters : allFilters.slice(0, 14);
 
   return (
-    <div className="w-full bg-stone-800 border-b-2 border-stone-600 p-3 z-30 shrink-0">
+    <div className="w-full bg-stone-800 border-b-2 border-stone-600 p-2 sm:p-3 z-30 shrink-0">
       <div className="flex flex-col gap-3">
-        
+
         {/* Top Row: Search Input (LCD Style) */}
         <div className="flex gap-2">
-            <div className="flex-1 bg-dex-screenGreen rounded p-1 border-4 border-stone-500 shadow-inner relative">
+            <div className="flex-1 bg-dex-screenGreen rounded p-1 border-2 sm:border-4 border-stone-500 shadow-inner relative">
                 <input
                 type="text"
-                className="w-full bg-transparent border-none text-black font-pixel text-xl placeholder-green-800/60 focus:outline-none uppercase"
+                className="w-full bg-transparent border-none text-black font-pixel text-lg sm:text-xl placeholder-green-800/60 focus:outline-none uppercase"
                 placeholder="INPUT SPECIES NAME..."
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
@@ -75,19 +75,19 @@ const FilterBar: React.FC<FilterBarProps> = ({
             </div>
             {/* Search LED */}
             <div className="flex flex-col justify-center items-center">
-                 <div className={`w-3 h-3 rounded-full mb-1 ${searchValue ? 'bg-green-400 shadow-[0_0_5px_#4ade80]' : 'bg-green-900'}`}></div>
-                 <span className="text-[0.6rem] text-stone-400 font-tech">DATA</span>
+                 <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full mb-1 ${searchValue ? 'bg-green-400 shadow-[0_0_5px_#4ade80]' : 'bg-green-900'}`}></div>
+                 <span className="text-[0.5rem] sm:text-[0.6rem] text-stone-400 font-tech">DATA</span>
             </div>
         </div>
 
         {/* Categories: Wrap Layout */}
         <div className="relative">
-             <div className="flex flex-wrap gap-2 transition-all duration-300 ease-in-out">
+             <div className="flex flex-wrap gap-1.5 sm:gap-2 transition-all duration-300 ease-in-out">
                 {displayedFilters.map((type) => (
                 <button
                     key={type}
                     onClick={() => onFilterChange(type)}
-                    className={`flex-shrink-0 px-3 py-1 text-xs font-tech uppercase tracking-wider border-b-4 active:border-b-0 active:translate-y-1 transition-all rounded ${
+                    className={`flex-shrink-0 px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-tech uppercase tracking-wider border-b-4 active:border-b-0 active:translate-y-1 transition-all rounded ${
                     currentFilter === type
                         ? 'bg-dex-blue border-blue-800 text-white'
                         : 'bg-stone-300 border-stone-400 text-stone-600 hover:bg-white'
@@ -96,12 +96,12 @@ const FilterBar: React.FC<FilterBarProps> = ({
                     {getFilterLabel(type)}
                 </button>
                 ))}
-                
+
                 {/* Expand Toggle Button */}
                 {!showAllFilters && allFilters.length > 14 && (
                     <button
                         onClick={() => setShowAllFilters(true)}
-                        className="px-3 py-1 text-xs font-tech uppercase tracking-wider bg-dex-yellow border-b-4 border-yellow-700 text-black hover:bg-yellow-400 rounded active:border-b-0 active:translate-y-1"
+                        className="px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-tech uppercase tracking-wider bg-dex-yellow border-b-4 border-yellow-700 text-black hover:bg-yellow-400 rounded active:border-b-0 active:translate-y-1"
                     >
                         + SHOW ALL
                     </button>
@@ -109,7 +109,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
                  {showAllFilters && (
                     <button
                         onClick={() => setShowAllFilters(false)}
-                        className="px-3 py-1 text-xs font-tech uppercase tracking-wider bg-stone-500 border-b-4 border-stone-700 text-white hover:bg-stone-400 rounded active:border-b-0 active:translate-y-1"
+                        className="px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-tech uppercase tracking-wider bg-stone-500 border-b-4 border-stone-700 text-white hover:bg-stone-400 rounded active:border-b-0 active:translate-y-1"
                     >
                         - COLLAPSE
                     </button>
@@ -118,13 +118,13 @@ const FilterBar: React.FC<FilterBarProps> = ({
         </div>
 
         {/* Alphabet: Keyboard Style */}
-        <div className="bg-stone-900/50 p-2 rounded border border-stone-700">
+        <div className="bg-stone-900/50 p-1 sm:p-2 rounded border border-stone-700">
             <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
                 <button
                     onClick={() => onLetterSelect('')}
-                    className={`flex h-8 w-8 min-w-[2rem] items-center justify-center font-pixel text-lg transition-all border-b-2 active:border-b-0 active:translate-y-[2px] rounded-sm ${
-                    !selectedLetter 
-                        ? 'bg-dex-yellow border-yellow-700 text-black' 
+                    className={`flex h-6 w-6 sm:h-8 sm:w-8 min-w-[1.5rem] sm:min-w-[2rem] items-center justify-center font-pixel text-base sm:text-lg transition-all border-b-2 active:border-b-0 active:translate-y-[2px] rounded-sm ${
+                    !selectedLetter
+                        ? 'bg-dex-yellow border-yellow-700 text-black'
                         : 'bg-stone-600 border-stone-800 text-stone-300 hover:bg-stone-500'
                     }`}
                 >
@@ -134,9 +134,9 @@ const FilterBar: React.FC<FilterBarProps> = ({
                     <button
                     key={letter}
                     onClick={() => onLetterSelect(letter)}
-                    className={`flex h-8 w-8 min-w-[2rem] items-center justify-center font-pixel text-xl transition-all border-b-2 active:border-b-0 active:translate-y-[2px] rounded-sm ${
-                        selectedLetter === letter 
-                        ? 'bg-dex-blue border-blue-800 text-white' 
+                    className={`flex h-6 w-6 sm:h-8 sm:w-8 min-w-[1.5rem] sm:min-w-[2rem] items-center justify-center font-pixel text-lg sm:text-xl transition-all border-b-2 active:border-b-0 active:translate-y-[2px] rounded-sm ${
+                        selectedLetter === letter
+                        ? 'bg-dex-blue border-blue-800 text-white'
                         : 'bg-stone-700 border-stone-900 text-stone-400 hover:bg-stone-600'
                     }`}
                     >

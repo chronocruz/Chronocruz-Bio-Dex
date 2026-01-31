@@ -33,6 +33,11 @@ lerna-debug.log*
 # OS files
 .DS_Store
 Thumbs.db
+nul
 
 # TypeScript
 *.tsbuildinfo
+
+# Reference/source UI folder
+Chronocruz-Bio-Dex-NewUI/
+Chronocruz-Bio-Dex-NewUI.zip
